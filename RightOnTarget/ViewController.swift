@@ -69,9 +69,14 @@ class ViewController: UIViewController {
         case 5:
             number = Int.random(in: 1...50)
             countPointsForRound(usersNumber: numberFromSlider)
-            MessageLabel.text = "\(round)-й раунд, итог игры - \(points) "
             round = 1
             points = 0
+            let alert = UIAlertController(
+            title: "Игра окончена",
+            message: "Вы заработали \(self.points) очков", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            MessageLabel.text = "\(round)-й раунд, итог игры - \(points) "
             
         default: break
             
