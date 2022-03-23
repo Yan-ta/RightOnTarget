@@ -13,6 +13,7 @@
 		2C05C02327E9E51F001347C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C05C02127E9E51F001347C1 /* Main.storyboard */; };
 		2C05C02527E9E520001347C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C05C02427E9E520001347C1 /* Assets.xcassets */; };
 		2C05C02827E9E520001347C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C05C02627E9E520001347C1 /* LaunchScreen.storyboard */; };
+		2CE932E227EB6BA0007B43C0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE932E127EB6BA0007B43C0 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2C05C02427E9E520001347C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C05C02727E9E520001347C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C05C02927E9E520001347C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CE932E127EB6BA0007B43C0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		2C05C01A27E9E51F001347C1 /* RightOnTarget */ = {
 			isa = PBXGroup;
 			children = (
+				2CE932E027EB6AFF007B43C0 /* Model */,
 				2C05C01B27E9E51F001347C1 /* AppDelegate.swift */,
 				2C05C01D27E9E51F001347C1 /* SceneDelegate.swift */,
 				2C05C01F27E9E51F001347C1 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				2C05C02927E9E520001347C1 /* Info.plist */,
 			);
 			path = RightOnTarget;
+			sourceTree = "<group>";
+		};
+		2CE932E027EB6AFF007B43C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CE932E127EB6BA0007B43C0 /* Game.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				2C05C02027E9E51F001347C1 /* ViewController.swift in Sources */,
 				2C05C01C27E9E51F001347C1 /* AppDelegate.swift in Sources */,
 				2C05C01E27E9E51F001347C1 /* SceneDelegate.swift in Sources */,
+				2CE932E227EB6BA0007B43C0 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +311,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.RightOnTarget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -327,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.RightOnTarget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

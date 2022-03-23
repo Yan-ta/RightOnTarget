@@ -9,84 +9,79 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var game: Game!
+    var generator: NumberGenerator!
+    
     @IBOutlet var mySlider: UISlider!
     @IBOutlet var myButton: UIButton!
     @IBOutlet var labelNumber: UILabel!
     @IBOutlet var label50: UILabel!
     @IBOutlet var label01: UILabel!
     @IBOutlet var MessageLabel: UILabel!
-    
-    private var number: Int = 0
-    private var round: Int = 1
-    private var points: Int = 0
-    private var numberFromSlider: Int = 0
-    
+        
+    override func loadView() {
+        super.loadView()
+        print("loadView")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        generator = NumberGenerator(minSV: 1, maxSV: 50)
+        game = Game(rounds: 5, generator: generator)
         myButton.layer.cornerRadius = 10
         mySlider.minimumValue = 1
         mySlider.maximumValue = 50
         mySlider.value = 25
-        number = Int.random(in: 1...50)
-    }
-        
-    func countPointsForRound(usersNumber: Int) {
-        var pointsForRound: Int = 0
-        if number == usersNumber {
-            pointsForRound = 50 }
-        else if number > usersNumber {
-            pointsForRound = 50 - number + usersNumber
-            
-        } else {
-            pointsForRound = 50 - usersNumber + number
-        }
-        points += pointsForRound
-    }
-
-    @IBAction func checkButton(_ sender: Any) {
-        switch round {
-        case 1:
-            countPointsForRound(usersNumber: numberFromSlider)
-            MessageLabel.text = "\(round)-й раунд, Ваш счет - \(points) "
-            round += 1
-        case 2:
-            number = Int.random(in: 1...50)
-            countPointsForRound(usersNumber: numberFromSlider)
-            labelNumber.text = String(numberFromSlider)
-            MessageLabel.text = "\(round)-й раунд, Ваш счет - \(points) "
-            round += 1
-        case 3:
-            number = Int.random(in: 1...50)
-            countPointsForRound(usersNumber: numberFromSlider)
-            MessageLabel.text = "\(round)-й раунд, Ваш счет - \(points) "
-            round += 1
-        case 4:
-            number = Int.random(in: 1...50)
-            countPointsForRound(usersNumber: numberFromSlider)
-            MessageLabel.text = "\(round)-й раунд, Ваш счет - \(points) "
-            round += 1
-        case 5:
-            number = Int.random(in: 1...50)
-            countPointsForRound(usersNumber: numberFromSlider)
-            round = 1
-            points = 0
-            let alert = UIAlertController(
-            title: "Игра окончена",
-            message: "Вы заработали \(self.points) очков", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            MessageLabel.text = "\(round)-й раунд, итог игры - \(points) "
-            
-        default: break
-            
-        }
-        
+        updateLabelWithNewSecretValue(newText: String(game.currentSecretValue))
     }
     
-    @IBAction func sliderAction(_ sender: Any) {
-        numberFromSlider = Int(mySlider.value)
-        labelNumber.text = String(numberFromSlider)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+    }
+        
+    
+
+    @IBAction func checkButton(_ sender: Any) {
+        game.calculateScore(with: Int(mySlider.value))
+        if game.isGameEnded {
+            showAlertWith(score: game.score)
+            game.restartGame()
+            MessageLabel.text = "\(game.currentRound)-й раунд"
+        } else {
+            game.startNewRound()
+            MessageLabel.text = "\(game.currentRound)-й раунд"
+        }
+        updateLabelWithNewSecretValue(newText: String(game.currentSecretValue))
+    }
+    
+    private func updateLabelWithNewSecretValue(newText: String) {
+        labelNumber.text = newText
+    }
+    
+    private func showAlertWith(score: Int) {
+        let alert = UIAlertController(
+        title: "Игра окончена",
+        message: "Вы заработали \(score) очков",
+        preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+        
 }
 
